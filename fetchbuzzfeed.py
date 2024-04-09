@@ -53,7 +53,7 @@ for e in items:
     creator = """<dc:creator>%s</dc:creator>""" %(e["authors"][0]["name"])
     pub = """<pubDate>%s</pubDate>""" %(e["created_at"])
     thumbs = e["thumbnails"][0]["sizes"]
-    thumb = [thumb for thumb in thumbs if thumb["size"] == "small"][0]
+    thumb = [thumb for thumb in thumbs if thumb["size"] == "square"][0]
     mediac = """<media:content medium="image" url="%s"/>"""%(thumb["url"])
     if "alt_text" in thumb:
        mediad= """<media:description>%s</media:description>""" %(thumb["alt_text"])
