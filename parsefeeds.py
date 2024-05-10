@@ -13,7 +13,7 @@ import time, os, stat
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
-warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning, module='bs4')
+warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 
 def get_entry_metadata (e):
     """
