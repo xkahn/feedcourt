@@ -4,7 +4,7 @@ from random import shuffle
 
 import re
 import html
-from bs4 import BeautifulSoup
+from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
 
 import argparse
 import pathlib
@@ -13,6 +13,7 @@ import time, os, stat
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='bs4')
+warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning, module='bs4')
 
 def get_entry_metadata (e):
     """
