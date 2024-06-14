@@ -41,41 +41,68 @@ footer = """</channel>
 
 if "zones" in y["props"]["pageProps"]:
   items = y["props"]["pageProps"]["zones"]["tab_trending"]
+
+  for e in items:
+     title = """<title>%s</title>""" %(e["content"]["title"])
+     l = e["source_uri"]
+    if l[0] == '/':
+      l = "https://www.buzzfeed.com" + l
+      link  = """<link>%s</link>""" %(l)
+      plink = """<guid isPermaLink="true">%s</guid>""" %(l)
+      atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
+      thumb = e["content"]["thumbnail"]["square"]
+      mediac = """<media:content medium="image" url="%s"/>"""%(thumb["url"])
+      if "alt" in thumb:
+        mediad= """<media:description>%s</media:description>""" %(thumb["alt"])
+      else:
+        mediad = ""
+
+      out = """<item>
+        %s
+        %s
+        %s
+        %s
+        %s
+        %s
+      </item>""" %(title,link, plink, atom, mediac, mediad)
+
+      rss.write(out)
+
 else:
   items = y["props"]["pageProps"]["moreStories"]
 
-for e in items:
-    title = """<title>%s</title>""" %(e["name"])
-    l = e["source_uri"]
-    if l[0] == '/':
-        l = "https://www.buzzfeed.com" + l
-    link  = """<link>%s</link>""" %(l)
-    plink = """<guid isPermaLink="true">%s</guid>""" %(l)
-    atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
-    description = """<description>%s</description>""" %(e["description"])
-    creator = """<dc:creator>%s</dc:creator>""" %(e["authors"][0]["name"])
-    pub = """<pubDate>%s</pubDate>""" %(e["created_at"])
-    thumbs = e["thumbnails"][0]["sizes"]
-    thumb = [thumb for thumb in thumbs if thumb["size"] == "square"][0]
-    mediac = """<media:content medium="image" url="%s"/>"""%(thumb["url"])
-    if "alt_text" in thumb:
-       mediad= """<media:description>%s</media:description>""" %(thumb["alt_text"])
-    else:
-       mediad = ""
+  for e in items:
+      title = """<title>%s</title>""" %(e["name"])
+      l = e["content"]["url"]
+      if l[0] == '/':
+          l = "https://www.buzzfeed.com" + l
+      link  = """<link>%s</link>""" %(l)
+      plink = """<guid isPermaLink="true">%s</guid>""" %(l)
+      atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
+      description = """<description>%s</description>""" %(e["description"])
+      creator = """<dc:creator>%s</dc:creator>""" %(e["authors"][0]["name"])
+      pub = """<pubDate>%s</pubDate>""" %(e["created_at"])
+      thumbs = e["thumbnails"][0]["sizes"]
+      thumb = [thumb for thumb in thumbs if thumb["size"] == "square"][0]
+      mediac = """<media:content medium="image" url="%s"/>"""%(thumb["url"])
+      if "alt_text" in thumb:
+        mediad= """<media:description>%s</media:description>""" %(thumb["alt_text"])
+      else:
+        mediad = ""
 
-    out = """<item>
-      %s
-      %s
-      %s
-      %s
-      %s
-      %s
-      %s
-      %s
-      %s
-    </item>""" %(title,link, plink, atom, description, creator, pub, mediac, mediad)
+      out = """<item>
+        %s
+        %s
+        %s
+        %s
+        %s
+        %s
+        %s
+        %s
+        %s
+      </item>""" %(title,link, plink, atom, description, creator, pub, mediac, mediad)
 
-    rss.write(out)
+      rss.write(out)
 
 rss.write(footer)
 rss.close()
