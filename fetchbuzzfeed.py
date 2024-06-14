@@ -43,8 +43,8 @@ if "zones" in y["props"]["pageProps"]:
   items = y["props"]["pageProps"]["zones"]["tab_trending"]
 
   for e in items:
-     title = """<title>%s</title>""" %(e["content"]["title"])
-     l = e["source_uri"]
+    title = """<title>%s</title>""" %(e["content"]["title"])
+    l = e["source_uri"]
     if l[0] == '/':
       l = "https://www.buzzfeed.com" + l
       link  = """<link>%s</link>""" %(l)
