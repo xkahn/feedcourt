@@ -40,7 +40,7 @@ footer = """</channel>
 </rss>"""
 
 if "zones" in y["props"]["pageProps"]:
-  items = y["props"]["pageProps"]["zones"]["tab_trending"]
+  items = y["props"]["pageProps"]["zones"]["tab_trending"]["items"]
 
   for e in items:
     title = """<title>%s</title>""" %(e["content"]["title"])
