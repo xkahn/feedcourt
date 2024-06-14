@@ -39,9 +39,10 @@ rss.write(header)
 footer = """</channel>
 </rss>"""
 
-# Old buzzfeed trending URL:
-# items = y["props"]["pageProps"]["moreStories"]
-items = y["props"]["pageProps"]["zones"]["tab_trending"]
+if "zones" in y["props"]["pageProps"]:
+  items = y["props"]["pageProps"]["zones"]["tab_trending"]
+else:
+  items = y["props"]["pageProps"]["moreStories"]
 
 for e in items:
     title = """<title>%s</title>""" %(e["name"])
