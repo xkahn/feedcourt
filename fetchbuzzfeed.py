@@ -47,26 +47,26 @@ if "zones" in y["props"]["pageProps"]:
     l = e["content"]["url"]
     if l[0] == '/':
       l = "https://www.buzzfeed.com" + l
-      link  = """<link>%s</link>""" %(l)
-      plink = """<guid isPermaLink="true">%s</guid>""" %(l)
-      atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
-      thumb = e["content"]["thumbnail"]["square"]
-      mediac = """<media:content medium="image" url="%s"/>"""%(thumb["url"])
-      if "alt" in thumb:
-        mediad= """<media:description>%s</media:description>""" %(thumb["alt"])
-      else:
-        mediad = ""
+    link  = """<link>%s</link>""" %(l)
+    plink = """<guid isPermaLink="true">%s</guid>""" %(l)
+    atom  = """<atom:link href="%s" rel="standout"/>""" %(l)
+    thumb = e["content"]["thumbnail"]["square"]
+    mediac = """<media:content medium="image" url="%s"/>"""%(thumb["url"])
+    if "alt" in thumb:
+      mediad= """<media:description>%s</media:description>""" %(thumb["alt"])
+    else:
+      mediad = ""
 
-      out = """<item>
-        %s
-        %s
-        %s
-        %s
-        %s
-        %s
-      </item>""" %(title,link, plink, atom, mediac, mediad)
+    out = """<item>
+      %s
+      %s
+      %s
+      %s
+      %s
+      %s
+    </item>""" %(title,link, plink, atom, mediac, mediad)
 
-      rss.write(out)
+    rss.write(out)
 
 else:
   items = y["props"]["pageProps"]["moreStories"]
