@@ -43,6 +43,9 @@ if "zones" in y["props"]["pageProps"]:
   items = y["props"]["pageProps"]["zones"]["tab_latest"]["items"]
 
   for e in items:
+    if "items" in e["content"]:
+      continue
+    
     title = """<title>%s</title>""" %(e["content"]["title"])
     l = e["content"]["url"]
     if l[0] == '/':
