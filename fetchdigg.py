@@ -3,7 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 
 # page = requests.get("https://digg.com/popular/render?from=0&size=30&dayFrom=1")
-page = requests.get("https://digg.com/popular/render?from=0&size=30&condensed=false&range=day")
+# page = requests.get("https://digg.com/popular/render?from=0&size=30&condensed=false&range=week")
+page = requests.get("https://digg.com/latest/render?from=0&size=20&condensed=false")
 rss = open("digg.rss", "w")
 
 header = """<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">

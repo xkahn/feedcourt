@@ -140,7 +140,10 @@ for url in feedlist:
     # make id by getting rid of spaces and non-alphanumerics
     siteid = pattern.sub('', site.strip().replace(" ",""))
     moreid = "more" + siteid 
-    sitelink = f['feed']['link'].replace("www.reddit.com/r", "old.reddit.com/r")
+    if 'link' in f['feed']:
+        sitelink = f['feed']['link'].replace("www.reddit.com/r", "old.reddit.com/r")
+    else:
+        sitelink = ""
     output += """<div class='section' id='%s'>
                 <div class='section_head'>
                   <h2><a href='%s' target='_blank'>%s</a></h2>
